@@ -1,63 +1,59 @@
 package com.abcd;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
-interface Operations{
-	void  addRecipes();
-	void searchRecipes();
-	void deleteRecipes();
-}
-public class RecipesOperation implements Operations
-	 {
-//    public RecipesOperation() {
-//    	
-//    	System.out.println("Operation started");
-//    }
-	Connection connect=null;
-    try {
-	   connect = JDBCUtil.getConnection();
-	  String sql;
+import com.abcd.JDBCUtil;
 
-	;
-	  
-	  
-    }
-    catch(Exception e) {
-        e.printStackTrace();
-       }
-    catch(SQLException sqle) {
-    	e.printStackTrace();
-    }
-public void addRecipes() {
-		
-	  String sql="INSERT INTO Recipe (id int AUTO_INCREMENT,dish_name varchar(30) NOT NULL,cuisine varchar(30) NOT NULL,url varchar(2083) NOT NULL,"
-	  		+ "main_ingredient varchar(30) NOT NULL,PRIMARY KEY(id)) Values(?,?,?,?,?)";
-	  Statement statement=connect.prepareStatement(sql);
-	  System.out.println("Please enter the following data");
-	  Scanner input=new Scanner(System.in);
-	  System.out.println("Enter the dish name:");
-	  
-	  
-
-	}
-    
-	
-
-	@Override
-	public void searchRecipes() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteRecipes() {
-		// TODO Auto-generated method stub
-		
-	}
-    }
-    
+interface Operations {
+    void addRecipes() throws SQLException;
 }
 
+public class RecipesOperation implements Operations {
+    public RecipesOperation() throws SQLException {
+        System.out.println("Operation Started");
+    }
+
+    @Override
+    public void addRecipes() throws SQLException {
+        String sql = "INSERT INTO Recipe (dish_name, cuisine, url, main_ingredient) VALUES (?, ?, ?, ?)";
+        Connection connect = null;
+        PreparedStatement pstatement = null;
+        
+        try {
+            connect = JDBCUtil.getConnection();
+            pstatement = connect.prepareStatement(sql);
+            
+            System.out.println("Please enter the following data:");
+            Scanner input = new Scanner(System.in);
+            System.out.println("Enter dish name:");
+            String dish_name = input.next();
+            System.out.println("Enter cuisine:");
+            String cuisine = input.next();
+            System.out.println("Enter URL:");
+            String url = input.next();
+            System.out.println("Enter main ingredient:");
+            String main_ingredient = input.next();
+            
+            input.close();
+            
+            pstatement.setString(1, dish_name);
+            pstatement.setString(2, cuisine);
+            pstatement.setString(3, url);
+            pstatement.setString(4, main_ingredient);
+            int rowsAffected = pstatement.executeUpdate();
+            
+            if (rowsAffected == 0) {
+                System.out.println("Data insertion unsuccessful");
+            } else {
+                System.out.println("Data inserted successfully");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtil.closeConnection(connect, pstatement);
+        }
+    }
+}
