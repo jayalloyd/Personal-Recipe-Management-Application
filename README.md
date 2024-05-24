@@ -4,7 +4,7 @@
 
 ## Project Description
 
-The Personal Recipe Management Application is a Java-based desktop application designed to help users manage their recipes efficiently. The application leverages core Java concepts, MySQL, and JDBC to provide a simple yet robust platform for adding, updating, and deleting recipes.
+The Personal Recipe Management Application is a Java-based desktop application designed to help users manage their recipes efficiently. The application leverages core Java concepts, MySQL, and JDBC to provide a simple yet robust platform for adding, updating,  deleting recipes,and searching from available recipes.
 
 ## Installation
 
@@ -36,11 +36,11 @@ The application offers the following core features:
 1. **Add Recipes**: Users can add new recipes to the database.
 2. **Update Recipes**: Users can update existing recipes using a specific recipe ID.
 3. **Delete Recipes**: Users can delete recipes from the database.
-4. **Quit the Application**: Users can exit the application gracefully.
+4. Search Recipes: Users can search recipes from the database according to main ingredient added.
+5. **Quit the Application**: Users can exit the application gracefully.
 
 ### Output Screenshot
-
-(will Include a screenshot of the application’s main interface here)
+output screenshot is also provided.
 
 ## Advanced Features
 
