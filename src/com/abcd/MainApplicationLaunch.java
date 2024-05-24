@@ -10,7 +10,7 @@ public class MainApplicationLaunch {
     public static void main(String[] args) {
     	System.out.println("Personal Recipe Management Application");
     	Scanner input=new Scanner(System.in);
-    	System.out.println("Enter an option to continue:1) Add recipe 2) Update recipe");
+    	System.out.println("Enter an option to continue:1) Add recipe 2) Update recipe 3)To select recipe asmain ingredient 4)Delete the recipe5)Quit application ");
     	int inputOption=input.nextInt();
     	switch( inputOption) {
     		case 1:
@@ -32,8 +32,16 @@ public class MainApplicationLaunch {
             }
             break;
     	}
-            case 3:
-            	
-        }
+            case 3:try {
+    			SelectOperation select_recipe= new SelectOperation();
+                  select_recipe.selectRecipe();
+}catch (SQLException e) {
+                e.printStackTrace();
+            }
+            break;
     	}
+           
+        	   
+    	}
+    	
 }
