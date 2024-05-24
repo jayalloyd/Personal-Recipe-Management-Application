@@ -1,6 +1,4 @@
-Certainly! Here's a more polished version of the project description for your Personal Recipe Management Application:
-
----
+--
 
 # Personal Recipe Management Application
 
